@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8"/>
 </head>
 
 <body>
@@ -10,10 +11,20 @@
     <script type="text/javascript">
         var item = document.getElementById('item');
         var results = [];
-        axios.get('https://randomuser.me/api/').then(function (res) {
-            return results = res.data.results;
-        });
-        item.innerHTML = results.results;
+        // axios.get('https://randomuser.me/api/').then(function (res) {
+        //     return results = res.data.results;
+        // });
+        fetch('https://randomuser.me/api/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                var item = data.results[0]
+                document.write(item.gender + '<br/>');
+                document.write(item.name.title + ' ' + item.name.first + ' ' + item.name.last + '<br/>');
+                document.write(item.location.city + ' ' + item.location.state + ' ' + item.location.country);
+            });
     </script>
 </body>
 
