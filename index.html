@@ -5,12 +5,15 @@
 
 <body>
     <h1>hello</h1>
+    <p id="item"></p>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        var item = axios.get('https://randomuser.me/api/').then(function (res) {
-            results = res.data;
+        var item = document.getElementById('item');
+        var results = [];
+        axios.get('https://randomuser.me/api/').then(function (res) {
+            return results = res.data.results;
         });
-
+        item.innerHTML = results.results;
     </script>
 </body>
 
